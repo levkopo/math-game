@@ -1,35 +1,31 @@
 import java.util.*
 import kotlin.random.Random
+import kotlin.system.exitProcess
+
+const val MAX_NUMBER = 999
 
 val operations = mapOf<String, (Number, Number) -> Number>(
     "+" to { a, b -> a.toInt()+b.toInt() },
     "-" to { a, b -> a.toInt()-b.toInt() },
 )
 
+val answers = mutableListOf<Long>()
+var expressions = 0
+
 fun main() {
     println("Математический тренировщик")
-    val answers = mutableListOf<Long>()
-    var expressions = 0
 
     Scanner(System.`in`).use {
         while(true) {
-            val a = Random.nextInt(999)
-            val b = Random.nextInt(999)
+            val a = Random.nextInt(MAX_NUMBER)
+            val b = Random.nextInt(MAX_NUMBER)
             val operation = operations.entries.shuffled().first()
             val answer = operation.value(a, b)
 
             val startTime = System.currentTimeMillis()
             print("$a${operation.key}$b=")
             when(it.nextLine()) {
-                ":quit", ":q" -> {
-
-                    println("${answers.size} правельных ответов из $expressions")
-                    if(answers.size==0)
-                        println("Среднее время вычисления: ${answers.average()/1000L}с")
-                    else println("Плохой из тебя математик")
-
-                    break
-                }
+                ":quit", ":q" -> quit()
 
                 answer.toString() -> {
                     val answerTime = System.currentTimeMillis() - startTime
@@ -46,4 +42,12 @@ fun main() {
             expressions++
         }
     }
+}
+
+fun quit() {
+    println("${answers.size} правельных ответов из $expressions")
+    if(answers.size==0)
+        println("Среднее время вычисления: ${answers.average()/1000L}с")
+    else println("Плохой из тебя математик")
+    exitProcess(0)
 }
