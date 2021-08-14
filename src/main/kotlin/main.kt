@@ -47,7 +47,7 @@ fun main() {
 
 fun quit() {
     println("${answers.size} правельных ответов из $expressions")
-    if(answers.size==0)
+    if(answers.size!=0)
         println("Среднее время вычисления: ${answers.average()/SECOND_IN_MILLIS}с")
     else println("Плохой из тебя математик")
     exitProcess(0)
