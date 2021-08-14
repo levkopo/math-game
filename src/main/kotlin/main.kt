@@ -2,6 +2,7 @@ import java.util.*
 import kotlin.random.Random
 import kotlin.system.exitProcess
 
+const val SECOND_IN_MILLIS = 1000L
 const val MAX_NUMBER = 999
 
 val operations = mapOf<String, (Number, Number) -> Number>(
@@ -31,7 +32,7 @@ fun main() {
                     val answerTime = System.currentTimeMillis() - startTime
                     answers.add(answerTime)
 
-                    println("Правильный ответ. Вы ответили на пример за ${answerTime/1000L} секунды")
+                    println("Правильный ответ. Вы ответили на пример за ${answerTime/SECOND_IN_MILLIS} секунды")
                 }
 
                 else -> {
@@ -47,7 +48,7 @@ fun main() {
 fun quit() {
     println("${answers.size} правельных ответов из $expressions")
     if(answers.size==0)
-        println("Среднее время вычисления: ${answers.average()/1000L}с")
+        println("Среднее время вычисления: ${answers.average()/SECOND_IN_MILLIS}с")
     else println("Плохой из тебя математик")
     exitProcess(0)
 }
