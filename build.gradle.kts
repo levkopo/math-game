@@ -7,6 +7,7 @@ version = "1.0"
 
 repositories {
     mavenCentral()
+    maven( url = "https://jitpack.io/" )
 }
 
 tasks.jar {

@@ -15,6 +15,9 @@ var expressions = 0
 
 fun main() {
     println("Математический тренировщик")
+    println(":s(kip) - пропустить пример")
+    println(":q(uit) - выйти")
+    println()
 
     Scanner(System.`in`).use {
         while(true) {
@@ -27,6 +30,8 @@ fun main() {
             print("$a${operation.key}$b=")
             when(it.nextLine()) {
                 ":quit", ":q" -> quit()
+                ":skip", ":s" -> println("Правильный ответ был $answer")
+
 
                 answer.toString() -> {
                     val answerTime = System.currentTimeMillis() - startTime
@@ -35,9 +40,7 @@ fun main() {
                     println("Правильный ответ. Вы ответили на пример за ${answerTime/SECOND_IN_MILLIS} секунды")
                 }
 
-                else -> {
-                    println("Неверный ответ! $answer")
-                }
+                else -> println("Неверный ответ! $answer")
             }
 
             expressions++
